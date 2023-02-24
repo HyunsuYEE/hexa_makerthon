@@ -25,16 +25,16 @@ class StatusNotifier extends ChangeNotifier {
   void calculateLevelAndPercentage() {
     print("${_targets[0]} ${_targets[1]} ${_targets[2]}");
     if (_point < _targets[0]) {
-      _currentLevel = 1;
+      _currentLevel = 0;
       _currentPercentage = (_point / _targets[0]);
     } else if (_point < _targets[1]) {
-      _currentLevel = 2;
+      _currentLevel = 1;
       _currentPercentage = (_point - _targets[0]) / (_targets[1] - _targets[0]);
     } else if (_point < _targets[2]) {
-      _currentLevel = 3;
+      _currentLevel = 2;
       _currentPercentage = (_point - _targets[1]) / (_targets[2] - _targets[1]);
     } else {
-      _currentLevel = 4;
+      _currentLevel = 3;
       _currentPercentage = 1;
     }
   }
