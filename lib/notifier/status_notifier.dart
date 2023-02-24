@@ -16,27 +16,11 @@ class StatusNotifier extends ChangeNotifier {
 
   String get characterName => _characterName;
   List<String> get rewardNames => _rewardNames;
-  File? get rewardImage1 => _rewardImages[0];
-  File? get rewardImage2 => _rewardImages[1];
-  File? get rewardImage3 => _rewardImages[2];
+
   List<File?> get rewardImages => _rewardImages;
   int get point => _point;
   int get currentLevel => _currentLevel;
   double get currentPercentage => _currentPercentage;
-  int get target1 => _targets[0];
-  int get target2 => _targets[1];
-  int get target3 => _targets[2];
-  set target1(int t) {
-    _targets[0] = t;
-  }
-
-  set target2(int t) {
-    _targets[1] = t;
-  }
-
-  set target3(int t) {
-    _targets[2] = t;
-  }
 
   void calculateLevelAndPercentage() {
     print("${_targets[0]} ${_targets[1]} ${_targets[2]}");

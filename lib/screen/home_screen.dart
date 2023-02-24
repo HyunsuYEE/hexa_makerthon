@@ -219,12 +219,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget mapImageByLevel(StatusNotifier notifier) {
     int level = notifier.currentLevel;
     File? file;
-    if (level == 0) {
-      file = notifier.rewardImage1;
-    } else if (level == 1) {
-      file = notifier.rewardImage2;
-    } else if (level == 2) {
-      file = notifier.rewardImage3;
+
+    if (level < notifier.rewardImages.length) {
+      file = notifier.rewardImages[level];
     }
 
     return file == null
