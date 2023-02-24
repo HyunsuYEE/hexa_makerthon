@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 
 import 'package:makerthon/api/api.dart';
+import 'package:makerthon/constants.dart';
 import 'package:makerthon/model/status_model.dart';
 
 class StatusNotifier extends ChangeNotifier {
@@ -12,8 +13,11 @@ class StatusNotifier extends ChangeNotifier {
   int _point = 0;
   int _currentLevel = 0;
   double _currentPercentage = 0;
-  List<int> _targets = [10, 20, 30];
+  List<int> _targets = [3, 20, 30];
+  int _characterMode = MODE_NONE;
+  final bool _const_for_subscribe = true;
 
+  bool get const_for_subscribe => _const_for_subscribe;
   String get characterName => _characterName;
   List<String> get rewardNames => _rewardNames;
 
@@ -21,6 +25,7 @@ class StatusNotifier extends ChangeNotifier {
   int get point => _point;
   int get currentLevel => _currentLevel;
   double get currentPercentage => _currentPercentage;
+  int get characterMode => _characterMode;
 
   void calculateLevelAndPercentage() {
     print("${_targets[0]} ${_targets[1]} ${_targets[2]}");
@@ -69,6 +74,15 @@ class StatusNotifier extends ChangeNotifier {
       } else {
         _point += diff;
       }
+
+      if (diff == 0) {
+        _characterMode = MODE_NONE;
+      } else if (diff > 0) {
+        _characterMode = MODE_HEART;
+      } else {
+        _characterMode = MODE_BAD;
+      }
+
       print("diff: $diff");
       print("point: $_point");
       calculateLevelAndPercentage();
