@@ -7,13 +7,13 @@ import 'package:makerthon/model/status_model.dart';
 
 class StatusNotifier extends ChangeNotifier {
   String _characterName = "Default name";
-  List<String> _rewardNames = ["레벨1", "레벨2", "레벨3"];
+  List<String> _rewardNames = ["치킨", "LEGO 해리포터", "LEGO 아이언맨"];
   List<File?> _rewardImages = [null, null, null];
 
   int _point = 0;
   int _currentLevel = 0;
   double _currentPercentage = 0;
-  List<int> _targets = [3, 20, 30];
+  List<int> _targets = [3, 5, 7];
   int _characterMode = MODE_NONE;
   final bool _const_for_subscribe = true;
 
@@ -39,7 +39,7 @@ class StatusNotifier extends ChangeNotifier {
       _currentLevel = 2;
       _currentPercentage = (_point - _targets[1]) / (_targets[2] - _targets[1]);
     } else {
-      _currentLevel = 3;
+      _currentLevel = 2;
       _currentPercentage = 1;
     }
   }

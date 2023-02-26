@@ -7,6 +7,9 @@ const ASSET_HAPPY_PUPPY = "assets/puppy/real_puppy.obj";
 const ASSET_MARK_BAD = "assets/mark/axes.obj";
 const ASSET_MARK_HEART = "assets/mark/hearts.obj";
 
+const ASSET_LEGO_POTER = "assets/images/lego_poter";
+const ASSET_LEGO_IRONMAN = "assets/images/ironman.jpg";
+const ASSET_CHICKEN = "assets/images/chicken.jpg";
 const MODE_NONE = 0;
 const MODE_HEART = 1;
 const MODE_BAD = 2;

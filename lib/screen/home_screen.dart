@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
         // toolbarHeight: _toolBarHeight,
         centerTitle: true,
         title: const Text(
-          "HeXA",
+          "고우니",
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900),
         ),
         foregroundColor: Colors.black,
@@ -164,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 30,
                       ),
                       Text(
-                        '다음 보상은 ${Provider.of<StatusNotifier>(context).rewardNames[Provider.of<StatusNotifier>(context).currentLevel]}',
+                        '다음 보상은 ${Provider.of<StatusNotifier>(context).rewardNames[Provider.of<StatusNotifier>(context).currentLevel%3]}',
                         style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
@@ -206,8 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
         [buildObj(ASSET_HAPPY_PUPPY), buildObj(ASSET_ANGRY_PUPPY)],
         [buildObj(ASSET_HAPPY_WOLF), buildObj(ASSET_ANGRY_WOLF)]
       ];
-      return notifier.const_for_subscribe
-          ? Cube(
+      return  Cube(
               key: UniqueKey(),
               onSceneCreated: (Scene scene) {
                 int mode = 0;
@@ -218,11 +217,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   scene.world.add(buildObj(ASSET_MARK_BAD));
                 }
                 scene.world.add(
-                    objectForEachLevelAndMode[notifier.currentLevel][mode]);
+                    objectForEachLevelAndMode[notifier.currentLevel%3][mode]);
+                scene.light.setColor(Colors.white, 0.3, 0.8, 0.3);
+                scene.light.position.setFrom(Vector3(0, 10, -10));
                 scene.camera.zoom = 8;
               },
-            )
-          : const SizedBox();
+            ) ;
     });
   }
 
@@ -267,8 +267,8 @@ class _HomeScreenState extends State<HomeScreen> {
               borderRadius: BorderRadius.circular(10),
               clipBehavior: Clip.hardEdge,
               child: FittedBox(
-                fit: BoxFit.fill,
-                child: Image.file(file),
+                fit: BoxFit.contain,
+                child: Image.file(filterQuality:FilterQuality.high, file),
               ),
             ),
           );
@@ -326,5 +326,5 @@ Future<void> _nameChangeDialog(
 }
 
 Object buildObj(String filename) {
-  return Object(fileName: filename, scale: Vector3(1, 1, 1));
+  return Object(fileName: filename, scale: Vector3(1, 1, 1), lighting: true);
 }
